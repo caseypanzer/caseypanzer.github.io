@@ -30,14 +30,18 @@ function moveBeans(currentBowl){
 
   if(currentBowlView = maxNumberOfBowls){
     currentBowl = -1;
-  }
+  };
 
-  for (var i = 1; i <= numberOfBeansInBowl; i++) {
-    var moveBowl = currentBowl + i
-
-    boardArray[moveBowl].push("x")
+  function updateModel(){
+    boardArray[moveBowl].push("x");
     boardArray[currentBowlView].pop();
     moveBeansView(currentBowlView, moveBowl);
+  };
+
+  for (var i = 1; i <= numberOfBeansInBowl; i++) {
+    var moveBowl = currentBowl + i;
+
+    updateModel();
   };
 };
 
