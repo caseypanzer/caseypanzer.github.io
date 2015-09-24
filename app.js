@@ -35,11 +35,26 @@ function moveBeans(currentBowl){
   };
 };
 
+
+//skip other players end bowl
+  //test variables
+    //-currentPlayer, currentBowl,
+  // if and statement
+
+//if you land in empty bowl on your sideyou get all beans in adjacent bowl
+  //test variables
+    //-currentPlayer, currentPlayerSide, emptyBowlNumber
+    //if greater than 8 then subtract other wise add based on bowl number
+//test if game is over
+  //if statement that loops through all arrays on currentPlayerSide
+
+
 function moveBeansView(currentBowl, moveBowl){
+
   var $currentBowlBeans = $("#"+currentBowl+" .beads"),
       $moveBowl = $("#"+moveBowl+"");
-  console.log($currentBowlBeans);
+      console.log(moveBowl);
     $currentBowlBeans.remove();
-  console.log($moveBowl);
+
     $moveBowl.append("<div class = 'beads'></div>");
 };
