@@ -32,11 +32,14 @@
   background: grey;
 }
 .beads{
-  width: 10px;
-  height: 10px;
+  width: .75em;
+  height: 1em;
+  margin: .25em;
 
   border-radius: 50%;
   background: black;
+
+  text-align: center;
 }
 .player-one-bowl{
   width: 25%;
