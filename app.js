@@ -16,6 +16,7 @@ var playerOne = "Player One",
       ["x","x","x","x"], //12
       ["x","x","x","x"], //13
     ],
+    maxNumberOfBowls = 13,
     $bowls = $(".bowls");
 
 $bowls.on('click',function(e){
@@ -25,13 +26,18 @@ $bowls.on('click',function(e){
 
 function moveBeans(currentBowl){
   var numberOfBeansInBowl = boardArray[currentBowl].length;
+  var currentBowlView = currentBowl;
+
+  if(currentBowlView = maxNumberOfBowls){
+    currentBowl = -1;
+  }
 
   for (var i = 1; i <= numberOfBeansInBowl; i++) {
     var moveBowl = currentBowl + i
 
     boardArray[moveBowl].push("x")
-    boardArray[currentBowl].pop();
-    moveBeansView(currentBowl, moveBowl);
+    boardArray[currentBowlView].pop();
+    moveBeansView(currentBowlView, moveBowl);
   };
 };
 
@@ -39,9 +45,8 @@ function moveBeans(currentBowl){
 //skip other players end bowl
   //test variables
     //-currentPlayer, currentBowl,
-  // if and statement
-
-//if you land in empty bowl on your sideyou get all beans in adjacent bowl
+    // if and statement
+//if you land in empty bowl on your side you get all beans in adjacent bowl
   //test variables
     //-currentPlayer, currentPlayerSide, emptyBowlNumber
     //if greater than 8 then subtract other wise add based on bowl number
