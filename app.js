@@ -36,9 +36,10 @@ function moveBeans(currentBowl){
 };
 
 function moveBeansView(currentBowl, moveBowl){
-  var $currentBowlBeans = $("#1:nth-child(1)"),
+  var $currentBowlBeans = $("#"+currentBowl+" .beads"),
       $moveBowl = $("#"+moveBowl+"");
   console.log($currentBowlBeans);
     $currentBowlBeans.remove();
   console.log($moveBowl);
+    $moveBowl.append("<div class = 'beads'></div>");
 };

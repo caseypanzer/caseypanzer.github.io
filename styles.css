@@ -40,6 +40,7 @@
   background: black;
 
   text-align: center;
+  float: left;
 }
 .player-one-bowl{
   width: 25%;
