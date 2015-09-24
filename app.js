@@ -19,10 +19,26 @@ var playerOne = "Player One",
     $bowls = $(".bowls");
 
 $bowls.on('click',function(e){
-  currentBowl = this.id;
-  MoveBeans(currentBowl);
+  currentBowl = parseInt(this.id);
+  moveBeans(currentBowl);
 });
 
-function MoveBeans(currentBowl){
-  console.log("MoveBeans");
+function moveBeans(currentBowl){
+  var numberOfBeansInBowl = boardArray[currentBowl].length;
+
+  for (var i = 1; i <= numberOfBeansInBowl; i++) {
+    var moveBowl = currentBowl + i
+
+    boardArray[moveBowl].push("x")
+    boardArray[currentBowl].pop();
+    moveBeansView(currentBowl, moveBowl);
+  };
+};
+
+function moveBeansView(currentBowl, moveBowl){
+  var $currentBowlBeans = $("#1:nth-child(1)"),
+      $moveBowl = $("#"+moveBowl+"");
+  console.log($currentBowlBeans);
+    $currentBowlBeans.remove();
+  console.log($moveBowl);
 };
