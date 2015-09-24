@@ -1,6 +1,4 @@
-var playerOne = "Player One",
-    playerTwo = "Player Two",
-    boardArray = [
+var boardArray = [
       [], //0 playerone
       ["x","x","x","x"], //1
       ["x","x","x","x"], //2
@@ -28,9 +26,7 @@ function moveBeans(currentBowl){
   var numberOfBeansInBowl = boardArray[currentBowl].length;
   var currentBowlView = currentBowl;
 
-  if(currentBowlView = maxNumberOfBowls){
-    currentBowl = -1;
-  };
+
 
   function updateModel(){
     boardArray[moveBowl].push("x");
@@ -41,6 +37,10 @@ function moveBeans(currentBowl){
   for (var i = 1; i <= numberOfBeansInBowl; i++) {
     var moveBowl = currentBowl + i;
 
+    if(moveBowl > maxNumberOfBowls){
+      moveBowl = moveBowl - 14;
+    };
+    console.log(moveBowl);
     updateModel();
   };
 };
