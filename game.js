@@ -11,7 +11,6 @@ var playerOne = "Player One",
     moveCounter = 1;
 
 $startButton.on("click", function(){
-  console.log("hello");
   getPlayerNames();
   determineFirstPlayer();
 });
@@ -50,7 +49,8 @@ function determineCurrentPlayer(){
 };
 
 function updateScoreView(){
-  determineCurrentPlayer();
+  $playerOneScore.text("Score: "+boardArray[0].length)
+  $playerTwoScore.text("Score: "+boardArray[7].length)
 };
 
 function updateMoveCounter(){

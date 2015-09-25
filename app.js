@@ -18,10 +18,12 @@ var boardArray = [
     $bowls = $(".bowls");
 
 $bowls.on('click',function(e){
+//add if statement to check if currentPlayer is greater than 0
   currentBowl = parseInt(this.id);
   moveBeans(currentBowl);
   updateMoveCounter();
   determineCurrentPlayer();
+  updateScoreView();
 });
 
 function moveBeans(currentBowl){
