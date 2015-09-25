@@ -17,35 +17,49 @@ var boardArray = [
     maxNumberOfBowls = 13,
     $bowls = $(".bowls");
 
-$bowls.on('click',function(e){
+$bowls.on('mousedown',function(e){
 //add if statement to check if currentPlayer is greater than 0
   currentBowl = parseInt(this.id);
   moveBeans(currentBowl);
-  updateMoveCounter();
+  updateCounter();
+  console.log(currentPlayer);
+});
+$bowls.on('mouseup',function(e){
+//add if statement to check if currentPlayer is greater than 0
   determineCurrentPlayer();
   updateScoreView();
+  console.log(currentPlayer);
 });
 
 function moveBeans(currentBowl){
-  var numberOfBeansInBowl = boardArray[currentBowl].length;
-  var currentBowlView = currentBowl;
-
-  function updateModel(){
-    boardArray[moveBowl].push("x");
-    boardArray[currentBowlView].pop();
-    moveBeansView(currentBowlView, moveBowl);
-  };
+    var numberOfBeansInBowl = boardArray[currentBowl].length;
 
   for (var i = 1; i <= numberOfBeansInBowl; i++) {
     var moveBowl = currentBowl + i;
 
     if(moveBowl > maxNumberOfBowls){
-      moveBowl = moveBowl - 14;
-    };
-    console.log(moveBowl);
+      moveBowl -= 14;
+      // if((currentPlayer === 1 && moveBowl > 7 ) ||
+      //    (currentPlayer === 2 && moveBowl < 13 )
+      //   ){
+      //     console.log("hello");
+      //     moveBowl += 1
+      //   };
+      };
+
     updateModel();
+    };
+
+
+    function updateModel(){
+      boardArray[moveBowl].push("x");
+      boardArray[currentBowl].pop();
+      moveBeansView(currentBowl, moveBowl);
+    };
+
   };
-};
+
+
 
 
 //skip other players end bowl
@@ -64,9 +78,7 @@ function moveBeansView(currentBowl, moveBowl){
 
   var $currentBowlBeans = $("#"+currentBowl+" .beads"),
       $moveBowl = $("#"+moveBowl+"");
-      console.log(moveBowl);
-    $currentBowlBeans.remove();
 
+    $currentBowlBeans.remove();
     $moveBowl.append("<div class = 'beads'></div>");
-    determineCurrentPlayer();
 };

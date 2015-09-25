@@ -8,7 +8,7 @@ var playerOne = "Player One",
     $playerOneName = $("#player-one-name"),
     $playerTwoName = $("#player-two-name"),
     currentPlayer = 0,
-    moveCounter = 1;
+    moveCounter = 0;
 
 $startButton.on("click", function(){
   getPlayerNames();
@@ -27,22 +27,22 @@ function determineFirstPlayer(){
 
   if(randomNumber > .5){
     $playerOneName.addClass("active-player");
-    currentPlayer = 1;
+    moveCounter = 1;
     alert("Your up first "+playerOne);
   }else{
     $playerTwoName.addClass("active-player");
-    currentPlayer = 2;
+    moveCounter = 2;
     alert("Your up first "+playerTwo);
   };
 };
 
 function determineCurrentPlayer(){
-    if(moveCounter % 2 === 0){
-      currentPlayer = 2;
+    if(moveCounter % 2 != 0){
+      currentPlayer = 1;
       $playerOneName.toggleClass("active-player");
       $playerTwoName.toggleClass("active-player");
     }else{
-      currentPlayer = 1;
+      currentPlayer = 2;
       $playerTwoName.toggleClass("active-player");
       $playerOneName.toggleClass("active-player");
     };
@@ -53,6 +53,6 @@ function updateScoreView(){
   $playerTwoScore.text("Score: "+boardArray[7].length)
 };
 
-function updateMoveCounter(){
+function updateCounter(){
   moveCounter += 1;
-};
+}
