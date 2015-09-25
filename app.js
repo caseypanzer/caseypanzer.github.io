@@ -16,16 +16,17 @@ var boardArray = [
     ],
     playerOneSide = [1,2,3,11,12,13],
     maxNumberOfBowls = 13,
+    playerOneScoringBowl = 0,
+    playerTwoScoringBowl = 7,
     $bowls = $(".bowls");
 
 $bowls.on('mousedown',function(e){
 //add if statement to check if currentPlayer is greater than 0
   currentBowl = parseInt(this.id);
   moveBeans(currentBowl);
-  updateScoreView();
 });
 $bowls.on("mouseup",function(e){
-  determineCurrentPlayer();
+  // determineCurrentPlayer();
 });
 
 
@@ -35,10 +36,6 @@ function moveBeans(currentBowl){
 
   for (var i = 1; i <= numberOfBeansInBowl; i++) {
     var moveBowl = currentBowl + i;
-    console.log("currentBowl is "+currentBowl);
-    console.log("currentPlayer is "+currentPlayer);
-    console.log("moveBowl is "+moveBowl);
-    console.log("iteration "+i);
 
      if(currentPlayer === 1 && moveBowl > maxNumberOfBowls){
           moveBowl -= 14;
@@ -47,25 +44,25 @@ function moveBeans(currentBowl){
      }else if(currentPlayer === 1 && moveBowl > 6 && currentBowl < 7 ){
           moveBowl += 1;
      };
-
-     if (currentPlayer === 1 && (finalBowl-maxNumberOfBowls) === 0){
-       currentPlayer = 1;
-     }else if (currentPlayer === 2 && finalBowl === 7 ){
-       currentPlayer = 2;
-     };
+     console.log("currentPlayer is "+currentPlayer);
+     console.log("moveBowl is "+moveBowl);
+     console.log("finalBowl is"+finalBowl);
+     console.log("iteration "+i);
 
     updateModel();
     };
 
-    function finalBeanEmptyBonus(){
-        for (var i = 0; i < playerOneSide.length; i++) {
-          if (playerOneSide[i] ==== finalBowl && boardArray[finalBowl].length === 0 && currentPlayer === 1 ) { //first player bonus
-
-          }else if{//second player bonus
-
-          };
-        };
-      };
+    // function finalBeanEmptyBonus(){
+    //     for (var i = 0; i < playerOneSide.length; i++) {
+    //       if (playerOneSide[i] ==== finalBowl && boardArray[finalBowl].length === 0 && currentPlayer === 1 ) { //first player bonus
+    //
+    //
+    //       }else if(currentPlayer === 2 && playerOneSide[i] != finalBowl && boardArray[finalBowl].length === 0){//second player bonus
+    //
+    //       };
+    //     };
+    //   };
+    moveBonus(finalBowl);
 
     function updateModel(){
       boardArray[moveBowl].push("x");
@@ -73,6 +70,19 @@ function moveBeans(currentBowl){
       moveBeansView(currentBowl, moveBowl);
     };
 
+  };
+
+  function moveBonus(finalBowl){
+    if (currentPlayer === 1 && (finalBowl-(maxNumberOfBowls+1)) === playerOneScoringBowl){
+      currentPlayer = 1; //wont work becuase determine player funciton will overide
+      console.log("bark");
+    }else if (currentPlayer === 2 && finalBowl === playerTwoScoringBowl ){
+      currentPlayer = 2; //wont work because determine player will override
+      console.log("woof");
+    }else{
+      determineCurrentPlayer();
+      console.log("meow");
+    };
   };
 
 

@@ -3,6 +3,7 @@ var playerOne = "Player One",
     playerOneScore = 0,
     playerTwoScore = 0,
     $startButton = $("#start-button"),
+    $resetButton = $("#resetButton"),
     $playerOneScore = $("#player-one-score"),
     $playerTwoScore = $("#player-two-score"),
     $playerOneName = $("#player-one-name"),
@@ -13,6 +14,10 @@ var playerOne = "Player One",
 $startButton.on("click", function(){
   getPlayerNames();
   determineFirstPlayer();
+});
+
+$resetButton.on("click", function(){
+  window.reload();
 });
 
 function getPlayerNames(){
@@ -52,15 +57,3 @@ function updateScoreView(){
   $playerOneScore.text("Score: "+boardArray[0].length)
   $playerTwoScore.text("Score: "+boardArray[7].length)
 };
-
-function updateCounter(){
-  moveCounter += 1;
-};
-
-function determinePlayerSide(){
-    for (var i = 0; i < playerOneSide.length; i++) {
-      if (playerOneSide[i] ==== finalBowl;) {
-        currentPlayerSide = 1;
-      };
-    };
-  };
