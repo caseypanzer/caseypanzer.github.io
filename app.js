@@ -14,6 +14,7 @@ var boardArray = [
       ["x","x","x","x"], //12
       ["x","x","x","x"], //13
     ],
+    playerOneSide = [1,2,3,11,12,13],
     maxNumberOfBowls = 13,
     $bowls = $(".bowls");
 
@@ -30,6 +31,7 @@ $bowls.on("mouseup",function(e){
 
 function moveBeans(currentBowl){
     var numberOfBeansInBowl = boardArray[currentBowl].length;
+    var finalBowl = currentBowl+numberOfBeansInBowl;
 
   for (var i = 1; i <= numberOfBeansInBowl; i++) {
     var moveBowl = currentBowl + i;
@@ -40,16 +42,30 @@ function moveBeans(currentBowl){
 
      if(currentPlayer === 1 && moveBowl > maxNumberOfBowls){
           moveBowl -= 14;
-     }else if (currentPlayer === 2 && moveBowl > maxNumberOfBowls) {
+     }else if (currentPlayer === 2 && moveBowl > maxNumberOfBowls){
           moveBowl = (moveBowl - 14) + 1;
      }else if(currentPlayer === 1 && moveBowl > 6 && currentBowl < 7 ){
-       console.log("meow");
           moveBowl += 1;
+     };
+
+     if (currentPlayer === 1 && (finalBowl-maxNumberOfBowls) === 0){
+       currentPlayer = 1;
+     }else if (currentPlayer === 2 && finalBowl === 7 ){
+       currentPlayer = 2;
      };
 
     updateModel();
     };
 
+    function finalBeanEmptyBonus(){
+        for (var i = 0; i < playerOneSide.length; i++) {
+          if (playerOneSide[i] ==== finalBowl && boardArray[finalBowl].length === 0 && currentPlayer === 1 ) { //first player bonus
+
+          }else if{//second player bonus
+
+          };
+        };
+      };
 
     function updateModel(){
       boardArray[moveBowl].push("x");

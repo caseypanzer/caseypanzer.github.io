@@ -55,4 +55,12 @@ function updateScoreView(){
 
 function updateCounter(){
   moveCounter += 1;
-}
+};
+
+function determinePlayerSide(){
+    for (var i = 0; i < playerOneSide.length; i++) {
+      if (playerOneSide[i] ==== finalBowl;) {
+        currentPlayerSide = 1;
+      };
+    };
+  };
