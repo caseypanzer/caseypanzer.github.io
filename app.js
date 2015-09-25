@@ -15,7 +15,7 @@ var boardArray = [
       ["x","x","x","x"], //13
     ],
     playerOneSide = [1,2,3,11,12,13],
-    playerOneSide = [4,5,6,8,9,10],
+    playerTwoSide = [4,5,6,8,9,10],
     maxNumberOfBowls = 13,
     playerOneScoringBowl = 0,
     playerTwoScoringBowl = 7,
@@ -33,45 +33,50 @@ $bowls.on("mouseup",function(e){
 
 function moveBeans(currentBowl){
     var numberOfBeansInBowl = boardArray[currentBowl].length;
-    var finalBowl = currentBowl+numberOfBeansInBowl;
 
-  for (var i = 1; i <= numberOfBeansInBowl; i++) {
-    var moveBowl = currentBowl + i;
+    for (var i = 1; i <= numberOfBeansInBowl; i++) {
+      var moveBowl = currentBowl + i;
 
-     if(currentPlayer === 1 && moveBowl > maxNumberOfBowls){
-          moveBowl -= 14;
-     }else if (currentPlayer === 2 && moveBowl > maxNumberOfBowls){
-          moveBowl = (moveBowl - 14) + 1;
-     }else if(currentPlayer === 1 && moveBowl > 6 && currentBowl < 7 ){
-          moveBowl += 1;
-     };
-     console.log("currentPlayer is "+currentPlayer);
-     console.log("moveBowl is "+moveBowl);
-     console.log("finalBowl is"+finalBowl);
-     console.log("iteration "+i);
+       if(currentPlayer === 1 && moveBowl > maxNumberOfBowls){
+            moveBowl -= 14;
+       }else if (currentPlayer === 2 && moveBowl > maxNumberOfBowls){
+            moveBowl = (moveBowl - 14) + 1;
+       }else if(currentPlayer === 1 && moveBowl > 6 && currentBowl < 7 ){
+            moveBowl += 1;
+       };
+      //  console.log("currentPlayer is "+currentPlayer);
+      //  console.log("moveBowl is "+moveBowl);
+      //  console.log("finalBowl is"+finalBowl);
+      //  console.log("iteration "+i);
 
-    updateModel();
-    };
-
-    // function finalBeanEmptyBonus(){
-    //     for (var i = 0; i < playerOneSide.length; i++) {
-    //       if (playerOneSide[i] ==== finalBowl && boardArray[finalBowl].length === 0 && currentPlayer === 1 ) { //first player bonus
-    //
-    //
-    //       }else if(currentPlayer === 2 && playerOneSide[i] != finalBowl && boardArray[finalBowl].length === 0){//second player bonus
-    //
-    //       };
-    //     };
-    //   };
-    moveBonus(finalBowl);
-    scoringBonus(finalBowl);
-
+      updateModel();
+      };
+      determineFinalBowl(currentBowl,numberOfBeansInBowl);
     function updateModel(){
       boardArray[moveBowl].push("x");
       boardArray[currentBowl].pop();
       moveBeansView(currentBowl, moveBowl);
     };
+  };
 
+  function determineFinalBowl(currentBowl,numberOfBeansInBowl){
+    var finalBowl = currentBowl+numberOfBeansInBowl;
+
+    if(currentPlayer === 1 && finalBowl > maxNumberOfBowls){
+         finalBowl -= 14;
+        //  console.log("woof"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
+    }else if (currentPlayer === 2 && finalBowl > maxNumberOfBowls){
+         finalBowl = (finalBowl - 14) + 1;
+        //  console.log("bark"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
+    }else if(currentPlayer === 1 && finalBowl > 6 && currentBowl < 7 ){
+         finalBowl += 1;
+        //  console.log("meow"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
+    }else{
+      finalBowl = finalBowl;
+      // console.log("purr"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
+    };
+    moveBonus(finalBowl);
+    scoringBonus(finalBowl);
   };
 
   function moveBonus(finalBowl){
@@ -82,23 +87,30 @@ function moveBeans(currentBowl){
     }else{
       determineCurrentPlayer();
     };
+
   };
 
   function scoringBonus(finalBowl){
     var testArray = [];
 
-    if (currentPlayer === 1) {
+    console.log("current player is "+currentPlayer);
+
+    if (currentPlayer === 2) {
       testArray = playerOneSide;
-      sideTest();
+      sideTest(testArray);
       console.log("woof");
+      console.log(finalBowl);
     }else{
       testArray = playerTwoSide;
-      sideTest();
+      sideTest(testArray);
       console.log("bark");
+      console.log(finalBowl);
     };
-    function sideTest(){
+
+    function sideTest(testArray){
       for (var i = 0; i < testArray.length; i++) {
-      if(testArray[i] === finalBowl && boardArray[finalBowl] === 0){
+      if(testArray[i] === finalBowl ){
+        //&& boardArray[finalBowl].length === 0
       console.log("meow");
     };
       };
