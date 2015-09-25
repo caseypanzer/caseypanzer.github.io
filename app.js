@@ -20,13 +20,13 @@ var boardArray = [
 $bowls.on('click',function(e){
   currentBowl = parseInt(this.id);
   moveBeans(currentBowl);
+  updateMoveCounter();
+  determineCurrentPlayer();
 });
 
 function moveBeans(currentBowl){
   var numberOfBeansInBowl = boardArray[currentBowl].length;
   var currentBowlView = currentBowl;
-
-
 
   function updateModel(){
     boardArray[moveBowl].push("x");
@@ -66,4 +66,5 @@ function moveBeansView(currentBowl, moveBowl){
     $currentBowlBeans.remove();
 
     $moveBowl.append("<div class = 'beads'></div>");
+    determineCurrentPlayer();
 };
