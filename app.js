@@ -80,7 +80,7 @@ function moveBeans(currentBowl){
   };
 
   function moveBonus(finalBowl){
-    if (currentPlayer === 1 && (finalBowl-(maxNumberOfBowls+1)) === playerOneScoringBowl){
+    if (currentPlayer === 1 && finalBowl === playerOneScoringBowl){
       currentPlayer = 1;
     }else if (currentPlayer === 2 && finalBowl === playerTwoScoringBowl ){
       currentPlayer = 2;
@@ -100,17 +100,19 @@ function moveBeans(currentBowl){
       sideTest(testArray);
       console.log("woof");
       console.log(finalBowl);
+      console.log(boardArray[finalBowl].length -1);
     }else{
       testArray = playerTwoSide;
       sideTest(testArray);
       console.log("bark");
       console.log(finalBowl);
+      console.log(boardArray[finalBowl].length - 1);
     };
 
     function sideTest(testArray){
       for (var i = 0; i < testArray.length; i++) {
-      if(testArray[i] === finalBowl ){
-        //&& boardArray[finalBowl].length === 0
+      if(testArray[i] === finalBowl && boardArray[finalBowl].length - 1 === 0){
+        //
       console.log("meow");
     };
       };
