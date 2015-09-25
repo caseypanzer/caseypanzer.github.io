@@ -21,31 +21,31 @@ $bowls.on('mousedown',function(e){
 //add if statement to check if currentPlayer is greater than 0
   currentBowl = parseInt(this.id);
   moveBeans(currentBowl);
-  updateCounter();
-  console.log(currentPlayer);
-});
-$bowls.on('mouseup',function(e){
-//add if statement to check if currentPlayer is greater than 0
-  determineCurrentPlayer();
   updateScoreView();
-  console.log(currentPlayer);
 });
+$bowls.on("mouseup",function(e){
+  determineCurrentPlayer();
+});
+
 
 function moveBeans(currentBowl){
     var numberOfBeansInBowl = boardArray[currentBowl].length;
 
   for (var i = 1; i <= numberOfBeansInBowl; i++) {
     var moveBowl = currentBowl + i;
+    console.log("currentBowl is "+currentBowl);
+    console.log("currentPlayer is "+currentPlayer);
+    console.log("moveBowl is "+moveBowl);
+    console.log("iteration "+i);
 
-    if(moveBowl > maxNumberOfBowls){
-      moveBowl -= 14;
-      // if((currentPlayer === 1 && moveBowl > 7 ) ||
-      //    (currentPlayer === 2 && moveBowl < 13 )
-      //   ){
-      //     console.log("hello");
-      //     moveBowl += 1
-      //   };
-      };
+     if(currentPlayer === 1 && moveBowl > maxNumberOfBowls){
+          moveBowl -= 14;
+     }else if (currentPlayer === 2 && moveBowl > maxNumberOfBowls) {
+          moveBowl = (moveBowl - 14) + 1;
+     }else if(currentPlayer === 1 && moveBowl > 6 && currentBowl < 7 ){
+       console.log("meow");
+          moveBowl += 1;
+     };
 
     updateModel();
     };
@@ -60,17 +60,20 @@ function moveBeans(currentBowl){
   };
 
 
-
-
-//skip other players end bowl
+//first//skip other players end bowl
   //test variables
     //-currentPlayer, currentBowl,
     // if and statement
-//if you land in empty bowl on your side you get all beans in adjacent bowl
+
+//second//loop around board after bowl 13
+  //if statement
+
+//middle//if you land in empty bowl on your side you get all beans in adjacent bowl
   //test variables
     //-currentPlayer, currentPlayerSide, emptyBowlNumber
     //if greater than 8 then subtract other wise add based on bowl number
-//test if game is over
+
+//last//test if game is over
   //if statement that loops through all arrays on currentPlayerSide
 
 

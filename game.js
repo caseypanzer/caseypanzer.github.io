@@ -27,22 +27,22 @@ function determineFirstPlayer(){
 
   if(randomNumber > .5){
     $playerOneName.addClass("active-player");
-    moveCounter = 1;
+    currentPlayer = 1;
     alert("Your up first "+playerOne);
   }else{
     $playerTwoName.addClass("active-player");
-    moveCounter = 2;
+    currentPlayer = 2;
     alert("Your up first "+playerTwo);
   };
 };
 
 function determineCurrentPlayer(){
-    if(moveCounter % 2 != 0){
-      currentPlayer = 1;
+    if(currentPlayer === 1){
+      currentPlayer = 2;
       $playerOneName.toggleClass("active-player");
       $playerTwoName.toggleClass("active-player");
     }else{
-      currentPlayer = 2;
+      currentPlayer = 1;
       $playerTwoName.toggleClass("active-player");
       $playerOneName.toggleClass("active-player");
     };
