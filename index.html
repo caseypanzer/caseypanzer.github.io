@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <title>MANCALA</title>
     <link rel="stylesheet" href="styles.css" charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+    jquery-1.11.3.js
+    <script src="jquery-1.11.3.js"></script>
   </head>
   <body>
     <div id = "header">mancala</div>
@@ -19,7 +21,7 @@
       </div>
     </div>
     <div id = "board">
-      <div class= "side">
+      <div class= "side" id = "side-one">
         <div class = "player-one-bowl" id = "0"></div>
         <div class = "bowls" id = "1">
           <div class = "beads"></div>
@@ -58,7 +60,7 @@
           <div class = "beads"></div>
         </div>
       </div>
-      <div class= "side">
+      <div class= "side" id = "side-two">
         <div class = "player-two-bowl" id = "7"></div>
         <div class = "bowls" id = "4">
           <div class = "beads"></div>

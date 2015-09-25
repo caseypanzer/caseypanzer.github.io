@@ -19,7 +19,8 @@ var boardArray = [
     maxNumberOfBowls = 13,
     playerOneScoringBowl = 0,
     playerTwoScoringBowl = 7,
-    $bowls = $(".bowls");
+    $bowls = $(".bowls"),
+    $side = $("side");
 
 $bowls.on('mousedown',function(e){
 //add if statement to check if currentPlayer is greater than 0
@@ -28,8 +29,16 @@ $bowls.on('mousedown',function(e){
 });
 $bowls.on("mouseup",function(e){
   // determineCurrentPlayer();
+  updateScoreView();
 });
-
+$bowls.on("click", function(e)){
+  currentSide = this.id;
+  if (currentSide = "side-one"){
+    var testArray = playerOneSide;
+  }else{
+    var testArray = playerTwoSide;
+  }
+}
 
 function moveBeans(currentBowl){
     var numberOfBeansInBowl = boardArray[currentBowl].length;
@@ -76,7 +85,7 @@ function moveBeans(currentBowl){
       // console.log("purr"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
     };
     moveBonus(finalBowl);
-    scoringBonus(finalBowl);
+    //determineOppositeBowl(finalBowl, moveBowl);
   };
 
   function moveBonus(finalBowl){
@@ -90,34 +99,35 @@ function moveBeans(currentBowl){
 
   };
 
-  function scoringBonus(finalBowl){
-    var testArray = [];
-
-    console.log("current player is "+currentPlayer);
-
-    if (currentPlayer === 2) {
-      testArray = playerOneSide;
-      sideTest(testArray);
-      console.log("woof");
-      console.log(finalBowl);
-      console.log(boardArray[finalBowl].length -1);
-    }else{
-      testArray = playerTwoSide;
-      sideTest(testArray);
-      console.log("bark");
-      console.log(finalBowl);
-      console.log(boardArray[finalBowl].length - 1);
-    };
-
-    function sideTest(testArray){
+  function determineOppositeBowl(finalBowl, moveBowl){
+    //find the item in the testArry if the bowl is empty...use indexOf.find function instead of for loop
       for (var i = 0; i < testArray.length; i++) {
-      if(testArray[i] === finalBowl && boardArray[finalBowl].length - 1 === 0){
-        //
-      console.log("meow");
-    };
+          if(testArray[i] === finalBowl && (boardArray[finalBowl].length - 1) === 0){ emptyBowlIndex = i;
+          };
       };
+      if(emptyBowlIndex < 3){
+        var oppositeBowl = testArray[i+3];
+      }else{ oppositeBowl = testArray[i-3];
+      };
+      bonusModel(opppositeBowl, moveBowl);
     };
+
+  function bonusModel(oppositeBowl, moveBowl){
+    console.log("meow")
+    boardArray[moveBowl].pop();
+    boardArray[scoringBowl].push("x");
+
+    for (var i = 0; i < testArray[oppositeBowl].length; i++) {
+      boardArray[moveBowl];
+      boardArray[oppositeBowl].pop();
+      if (currentPlayer === 1) {
+        boardArray[playerOneScoringBowl].push("x");
+      }else{
+        boardArray[playerTwoScoringBowl].push("x");
+        };
+      };
   };
+
 
 function moveBeansView(currentBowl, moveBowl){
 
@@ -126,6 +136,10 @@ function moveBeansView(currentBowl, moveBowl){
 
     $currentBowlBeans.remove();
     $moveBowl.append("<div class = 'beads'></div>");
+};
+
+function bonusView(currentScoringBowl, moveBowl){
+
 };
 
 
