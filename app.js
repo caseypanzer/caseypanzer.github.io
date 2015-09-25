@@ -15,6 +15,7 @@ var boardArray = [
       ["x","x","x","x"], //13
     ],
     playerOneSide = [1,2,3,11,12,13],
+    playerOneSide = [4,5,6,8,9,10],
     maxNumberOfBowls = 13,
     playerOneScoringBowl = 0,
     playerTwoScoringBowl = 7,
@@ -63,6 +64,7 @@ function moveBeans(currentBowl){
     //     };
     //   };
     moveBonus(finalBowl);
+    scoringBonus(finalBowl);
 
     function updateModel(){
       boardArray[moveBowl].push("x");
@@ -74,16 +76,43 @@ function moveBeans(currentBowl){
 
   function moveBonus(finalBowl){
     if (currentPlayer === 1 && (finalBowl-(maxNumberOfBowls+1)) === playerOneScoringBowl){
-      currentPlayer = 1; //wont work becuase determine player funciton will overide
-      console.log("bark");
+      currentPlayer = 1;
     }else if (currentPlayer === 2 && finalBowl === playerTwoScoringBowl ){
-      currentPlayer = 2; //wont work because determine player will override
-      console.log("woof");
+      currentPlayer = 2;
     }else{
       determineCurrentPlayer();
-      console.log("meow");
     };
   };
+
+  function scoringBonus(finalBowl){
+    var testArray = [];
+
+    if (currentPlayer === 1) {
+      testArray = playerOneSide;
+      sideTest();
+      console.log("woof");
+    }else{
+      testArray = playerTwoSide;
+      sideTest();
+      console.log("bark");
+    };
+    function sideTest(){
+      for (var i = 0; i < testArray.length; i++) {
+      if(testArray[i] === finalBowl && boardArray[finalBowl] === 0){
+      console.log("meow");
+    };
+      };
+    };
+  };
+
+function moveBeansView(currentBowl, moveBowl){
+
+  var $currentBowlBeans = $("#"+currentBowl+" .beads"),
+      $moveBowl = $("#"+moveBowl+"");
+
+    $currentBowlBeans.remove();
+    $moveBowl.append("<div class = 'beads'></div>");
+};
 
 
 //first//skip other players end bowl
@@ -101,13 +130,3 @@ function moveBeans(currentBowl){
 
 //last//test if game is over
   //if statement that loops through all arrays on currentPlayerSide
-
-
-function moveBeansView(currentBowl, moveBowl){
-
-  var $currentBowlBeans = $("#"+currentBowl+" .beads"),
-      $moveBowl = $("#"+moveBowl+"");
-
-    $currentBowlBeans.remove();
-    $moveBowl.append("<div class = 'beads'></div>");
-};
