@@ -85,7 +85,7 @@ function moveBeans(currentBowl){
       // console.log("purr"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
     };
     moveBonus(finalBowl);
-    //determineOppositeBowl(finalBowl, moveBowl);
+    //if length if finalBowl is one then run scoreBonus
   };
 
   function moveBonus(finalBowl){
@@ -99,32 +99,26 @@ function moveBeans(currentBowl){
 
   };
 
-  function determineOppositeBowl(finalBowl, moveBowl){
-    //find the item in the testArry if the bowl is empty...use indexOf.find function instead of for loop
-      for (var i = 0; i < testArray.length; i++) {
-          if(testArray[i] === finalBowl && (boardArray[finalBowl].length - 1) === 0){ emptyBowlIndex = i;
-          };
-      };
-      if(emptyBowlIndex < 3){
-        var oppositeBowl = testArray[i+3];
-      }else{ oppositeBowl = testArray[i-3];
-      };
-      bonusModel(opppositeBowl, moveBowl);
+  function bonusModel(oppositeBowl, moveBowl){
+
+    var emptyBowlIndex = testArray.indexOf(finalBowl)
+
+    if(emptyBowlIndex < 3){
+      var oppositeBowl = testArray[i+3];
+    }else{ oppositeBowl = testArray[i-3];
     };
 
-  function bonusModel(oppositeBowl, moveBowl){
     console.log("meow")
     boardArray[moveBowl].pop();
     boardArray[scoringBowl].push("x");
 
     for (var i = 0; i < testArray[oppositeBowl].length; i++) {
-      boardArray[moveBowl];
-      boardArray[oppositeBowl].pop();
       if (currentPlayer === 1) {
         boardArray[playerOneScoringBowl].push("x");
       }else{
         boardArray[playerTwoScoringBowl].push("x");
         };
+        boardArray[oppositeBowl].pop();
       };
   };
 
