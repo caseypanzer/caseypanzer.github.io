@@ -32,20 +32,7 @@ $bowls.on('mousedown',function(e){
 $bowls.on("mouseup",function(e){
   updateScoreView();
 });
-// $side.on("click", function(e){
-//   console.log("hello");
-//
-//   testSide();
-//
-//   function testSide (){
-//     if (this.id = "side-one"){
-//       testArray = playerOneSide;
-//     }else{
-//       testArray = playerTwoSide;
-//     };
-//   };
-//   console.log("this is testArray"+testArray);
-// });
+
 
 function moveBeans(currentBowl){
     var numberOfBeansInBowl = boardArray[currentBowl].length;
@@ -90,6 +77,7 @@ function moveBeans(currentBowl){
       console.log(finalBowl);
       bonusModel(finalBowl);
     };
+    checkForEmptySide();
   };
 
   function moveBonus(finalBowl){
@@ -165,6 +153,39 @@ function bonusView(oppositeBowl, scoringBowl){
 
     $oppositeBowlBeans.remove();
     $scoringBowl.append("<div class = 'beads'></div>");
+};
+
+function checkForEmptySide (){
+  var numberOfBeansPlayerTwo = 0;
+      for (var i = 0; i < playerTwoSide.length; i++) {
+
+        numberOfBeansPlayerTwo += boardArray[playerTwoSide[i]].length
+      };
+
+      var numberOfBeansPlayerOne = 0;
+      for (var i = 0; i < playerOneSide.length; i++) {
+
+        numberOfBeansPlayerOne = numberOfBeansPlayerOne + boardArray[playerOneSide[i]].length
+      };
+
+      if(numberOfBeansPlayerOne === 0 || numberOfBeansPlayerTwo === 0){
+        determineWinner(numberOfBeansPlayerOne, numberOfBeansPlayerTwo)
+      };
+};
+
+function determineWinner(numberOfBeansPlayerOne, numberOfBeansPlayerTwo){
+      var playerOne = boardArray[0].length+numberOfBeansPlayerOne
+      var playerTwo = boardArray[7].length+numberOfBeansPlayerTwo
+
+  if(playerOne > PlayerTwo){
+    alert("player one wins!");
+    $playerOneScore.text("Score: "+playerOne);
+    $playerTwoScore.text("Score: "+playerTwo);
+  }else if(playerTwo > playerOne){
+    alert("player two wins!");
+    $playerOneScore.text("Score: "+playerOne);
+    $playerTwoScore.text("Score: "+playerTwo);
+  };
 };
 
 

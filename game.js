@@ -3,7 +3,7 @@ var playerOne = "Player One",
     playerOneScore = 0,
     playerTwoScore = 0,
     $startButton = $("#start-button"),
-    $resetButton = $("#resetButton"),
+    $resetButton = $("#reset-button"),
     $playerOneScore = $("#player-one-score"),
     $playerTwoScore = $("#player-two-score"),
     $playerOneName = $("#player-one-name"),
@@ -11,13 +11,14 @@ var playerOne = "Player One",
     currentPlayer = 0,
     moveCounter = 0;
 
-$startButton.on("click", function(){
+$startButton.on("click", function(e){
   getPlayerNames();
   determineFirstPlayer();
 });
 
-$resetButton.on("click", function(){
-  window.reload();
+$resetButton.on("click", function(e){
+  location.reload();
+  console.log("hello");
 });
 
 function getPlayerNames(){
