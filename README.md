@@ -6,6 +6,7 @@ I started by diagraming the board as a single array and listing out the rules of
 
 * installation instructions(which may just be a link to your hosted game)
 installation instructions:
+http://caseypanzer.github.io/
 
 game-play instructions:
 http://boardgames.about.com/cs/mancala/ht/play_mancala.htm
@@ -14,6 +15,6 @@ http://boardgames.about.com/cs/mancala/ht/play_mancala.htm
 I need to add a conditional test which only allows the player to play pieces on their side of the board.
 
 * wireframe images
-link -
+link - 
 
 * user stories
