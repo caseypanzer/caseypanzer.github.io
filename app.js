@@ -105,7 +105,7 @@ function moveBeans(currentBowl){
     console.log("this is final bowl "+finalBowl);
     console.log("this is currentPlayer "+currentPlayer);
 
-    if (emptyBowlIndex != 1){
+    if (emptyBowlIndex != -1){
 
       if(emptyBowlIndex < 3){
         var oppositeBowl = testArray[emptyBowlIndex+3];
