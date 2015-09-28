@@ -42,15 +42,19 @@ function determineFirstPlayer(){
 };
 
 function determineCurrentPlayer(){
+
+  setTimeout(function(){
     if(currentPlayer === 1){
-      currentPlayer = 2;
-      $playerOneName.toggleClass("active-player");
-      $playerTwoName.toggleClass("active-player");
-    }else{
-      currentPlayer = 1;
-      $playerTwoName.toggleClass("active-player");
-      $playerOneName.toggleClass("active-player");
-    };
+    currentPlayer = 2;
+    $playerOneName.toggleClass("active-player");
+    $playerTwoName.toggleClass("active-player");
+  }else{
+    currentPlayer = 1;
+    $playerTwoName.toggleClass("active-player");
+    $playerOneName.toggleClass("active-player");
+  }
+  },250);
+
 };
 
 function updateScoreView(){

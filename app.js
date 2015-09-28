@@ -14,31 +14,38 @@ var boardArray = [
       ["x","x","x","x"], //12
       ["x","x","x","x"], //13
     ],
-    playerOneSide = [1,2,3,11,12,13],
-    playerTwoSide = [4,5,6,8,9,10],
+    playerOneSide = [1,2,3,13,12,11],
+    playerTwoSide = [4,5,6,10,9,8],
     maxNumberOfBowls = 13,
     playerOneScoringBowl = 0,
     playerTwoScoringBowl = 7,
+    testArray = [],
     $bowls = $(".bowls"),
-    $side = $("side");
+    $side = $(".side");
 
 $bowls.on('mousedown',function(e){
 //add if statement to check if currentPlayer is greater than 0
+//add if statement to lock side of board according to whose turn it is
   currentBowl = parseInt(this.id);
   moveBeans(currentBowl);
 });
 $bowls.on("mouseup",function(e){
-  // determineCurrentPlayer();
   updateScoreView();
 });
-$bowls.on("click", function(e){
-  currentSide = this.id;
-  if (currentSide = "side-one"){
-    var testArray = playerOneSide;
-  }else{
-    var testArray = playerTwoSide;
-  }
-});
+// $side.on("click", function(e){
+//   console.log("hello");
+//
+//   testSide();
+//
+//   function testSide (){
+//     if (this.id = "side-one"){
+//       testArray = playerOneSide;
+//     }else{
+//       testArray = playerTwoSide;
+//     };
+//   };
+//   console.log("this is testArray"+testArray);
+// });
 
 function moveBeans(currentBowl){
     var numberOfBeansInBowl = boardArray[currentBowl].length;
@@ -53,10 +60,6 @@ function moveBeans(currentBowl){
        }else if(currentPlayer === 1 && moveBowl > 6 && currentBowl < 7 ){
             moveBowl += 1;
        };
-      //  console.log("currentPlayer is "+currentPlayer);
-      //  console.log("moveBowl is "+moveBowl);
-      //  console.log("finalBowl is"+finalBowl);
-      //  console.log("iteration "+i);
 
       updateModel();
       };
@@ -73,22 +76,20 @@ function moveBeans(currentBowl){
 
     if(currentPlayer === 1 && finalBowl > maxNumberOfBowls){
          finalBowl -= 14;
-        //  console.log("woof"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
     }else if (currentPlayer === 2 && finalBowl > maxNumberOfBowls){
          finalBowl = (finalBowl - 14) + 1;
-        //  console.log("bark"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
     }else if(currentPlayer === 1 && finalBowl > 6 && currentBowl < 7 ){
          finalBowl += 1;
-        //  console.log("meow"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
     }else{
       finalBowl = finalBowl;
-      // console.log("purr"+"-"+currentBowl+"-"+numberOfBeansInBowl+"-"+finalBowl);
-    };
+          };
     moveBonus(finalBowl);
-    if (boardArray[finalBowl].length) && side = your side){
+    if (boardArray[finalBowl].length === 1){
+      // FIXME: add side test
+      console.log(boardArray[finalBowl].length);
+      console.log(finalBowl);
       bonusModel(finalBowl);
-    }
-    //bonusModel(finalBowl);if length if finalBowl is one then run scoreBonus
+    };
   };
 
   function moveBonus(finalBowl){
@@ -99,41 +100,54 @@ function moveBeans(currentBowl){
     }else{
       determineCurrentPlayer();
     };
-
   };
 
   function bonusModel(finalBowl){
-    var emptyBowlIndex = testArray.indexOf(finalBowl)
-        console.log("meow")
-        console.log("finalBowl ="+finalBowl);
-        console.log("finalBowl length="+finalBowl.length);
-        console.log("oppositeBowl ="+oppositeBowl);
-        console.log("oppositeBowl length="+oppositeBowl.length);
+    var emptyBowlIndex = undefined;
 
-    if(emptyBowlIndex < 3){
-      var oppositeBowl = testArray[i+3];
-    }else{ oppositeBowl = testArray[i-3];
-    };
-
-    if(currentPlayer = 1){
-      var scoringBowl = playerOneScoringBowl;
+    if(currentPlayer === 1){
+      testArray = playerOneSide;
+      emptyBowlIndex = testArray.indexOf(finalBowl)
     }else{
-      scoringBowl = playerTwoScoringBowl;
+      testArray = playerTwoSide;
+      emptyBowlIndex = testArray.indexOf(finalBowl)
     };
+    console.log("this is emptybowl index "+emptyBowlIndex);
+    console.log("this is test array "+testArray);
+    console.log("this is final bowl "+finalBowl);
+    console.log("this is currentPlayer "+currentPlayer);
 
-    debugger;
+    if (emptyBowlIndex != 1){
 
-    for (var i = 0; i < testArray[oppositeBowl].length; i++) {
-      if (currentPlayer === 1) {
-        boardArray[playerOneScoringBowl].push("x");
-      }else{
-        boardArray[playerTwoScoringBowl].push("x");
-        };
-      boardArray[oppositeBowl].pop();
+      if(emptyBowlIndex < 3){
+        var oppositeBowl = testArray[emptyBowlIndex+3];
+      }else{ oppositeBowl = testArray[emptyBowlIndex-3];
       };
 
-    boardArray[finalBowl].pop();
-    boardArray[scoringBowl].push("x");
+      if(currentPlayer === 1){
+        var scoringBowl = playerOneScoringBowl;
+      }else{ scoringBowl = playerTwoScoringBowl;
+      };
+
+      console.log("meow")
+      console.log("oppositeBowl ="+oppositeBowl);
+      console.log("oppositeBowl length="+boardArray[oppositeBowl].length);
+
+      for (var i = 0; i < boardArray[oppositeBowl].length; i++) {
+        if (currentPlayer === 1){
+          boardArray[playerOneScoringBowl].push("x");
+        }else{
+          boardArray[playerTwoScoringBowl].push("x");
+        };
+        bonusView(oppositeBowl, scoringBowl);
+        boardArray[oppositeBowl].pop();
+        };
+
+      boardArray[finalBowl].pop();
+      boardArray[scoringBowl].push("x");
+      bonusView(finalBowl, scoringBowl);
+
+    };
   };
 
 function moveBeansView(currentBowl, moveBowl){
@@ -145,8 +159,12 @@ function moveBeansView(currentBowl, moveBowl){
     $moveBowl.append("<div class = 'beads'></div>");
 };
 
-function bonusView(currentScoringBowl, moveBowl){
+function bonusView(oppositeBowl, scoringBowl){
+  var $oppositeBowlBeans = $("#"+oppositeBowl+" .beads"),
+      $scoringBowl = $("#"+scoringBowl+"");
 
+    $oppositeBowlBeans.remove();
+    $scoringBowl.append("<div class = 'beads'></div>");
 };
 
 
@@ -165,3 +183,6 @@ function bonusView(currentScoringBowl, moveBowl){
 
 //last//test if game is over
   //if statement that loops through all arrays on currentPlayerSide and if all arrays lenth equal zero then sweep all remaining beans to opposite player and declare winner
+  //sum the length of all of the arrays to detemine how many time to push and then set the array equal to zero.
+  //
+  //variables PlayerOneSide, PlayerTwoSide,
